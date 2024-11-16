@@ -10,9 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
-public class rvAdapter extends RecyclerView.Adapter {
+public class rvAdapter extends RecyclerView.Adapter<rvAdapter.ViewHolder> {
     Context ctx;
     List<Dokter> listDokter;
 
@@ -20,6 +22,7 @@ public class rvAdapter extends RecyclerView.Adapter {
         this.ctx = ctx;
         this.listDokter = listDokter;
     }
+
     @NonNull
     @Override
     public rvAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,9 +37,6 @@ public class rvAdapter extends RecyclerView.Adapter {
         holder.speciality.setText(dokter.getSpeciality());
         holder.experience.setText(dokter.getExperience());
         Glide.with(ctx).load(dokter.getImage()).into(holder.image);
-
-
-
     }
 
     @Override
@@ -44,12 +44,11 @@ public class rvAdapter extends RecyclerView.Adapter {
         return listDokter.size();
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView nama, speciality, experience;
 
-        public ViewHolder (@NonNull View itemView){
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.imageDokter);
             nama = itemView.findViewById(R.id.namaDokter);
